@@ -43,9 +43,9 @@ class ViewController: UITableViewController {
             
             self.locationManager.fetchCountryAndCity(location: self.locationManager.location!) { country, city in
                 let label = UILabel(frame: CGRect(x: 10, y:6, width: self.view.frame.size.width, height: 15))
-                print("latitude: \(position.latitude), longitude: \(position.longitude)")
-                print(city)
-                print(country)
+                //print("latitude: \(position.latitude), longitude: \(position.longitude)")
+                //print(city)
+                //print(country)
                 label.text = "\(city),\(country),\((self.timeStamp)!)"
                 label.textColor = #colorLiteral(red: 0.4513868093, green: 0.9930960536, blue: 1, alpha: 1)
                 label.font = label.font.withSize(11)
@@ -136,10 +136,17 @@ extension ViewController {
         
         cell.windSpeedLabel.text = String(format: "%.f m/s", (weatherItem.windSpeed))
         
-        cell.windDirection.text = weatherItem.windDirection?.stringValue
+        //cell.windDirection.text = weatherItem.windDirection?.stringValue
         
         cell.timeLabel.text = hoursAndMinutes(timeValue: String(describing:weatherItem.timestamp))
         
+        let windDegreeInradians = degreesToRadians(degrees: -weatherItem.windDegree)
+    
+        //let tr = CGAffineTransform.identity.rotated(by: CGFloat(-windDegreeInradians))
+        let tr = CGAffineTransform(rotationAngle: CGFloat(windDegreeInradians))
+        
+        cell.windImage.transform = tr
+        cell.windImage.image = UIImage(named: "arrow.png")
         
         let weatherIcon = WeatherIcon(iconString: weatherItem.icon)
         cell.iconImage.image = weatherIcon.image

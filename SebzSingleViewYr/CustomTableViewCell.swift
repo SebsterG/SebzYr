@@ -14,7 +14,7 @@ class CustomTableViewCell: UITableViewCell {
     @IBOutlet var rainLabel:UILabel!
     @IBOutlet weak var windSpeedLabel: UILabel!
     @IBOutlet weak var iconImage: UIImageView!
-    @IBOutlet weak var windDirection: UILabel!
+    @IBOutlet weak var windImage: UIImageView!
     
     
     
