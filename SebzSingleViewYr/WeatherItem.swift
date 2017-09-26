@@ -43,6 +43,7 @@ extension WeatherItem {
         guard let json = json as? [String: Any] else {
             return nil
         }
+       
     
         guard let main = json["main"] as? [String: Any], let temp = main["temp"] as? Double else {
             return nil
@@ -55,7 +56,6 @@ extension WeatherItem {
         guard let windArray = json["wind"] as? [String: Any], let windSpeed = windArray["speed"] as? Double, let windDegree = windArray["deg"] as? Double else {
             return nil
         }
-        
         
         guard let rawTimestamp = json["dt"] as? Int else {
             return nil

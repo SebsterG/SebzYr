@@ -9,44 +9,55 @@
 import UIKit
 import CoreLocation
 
+
 class ViewController: UITableViewController {
     
     var weatherGroups = [WeatherGroup]()
+    var weatherCity = [WeatherItem]()
     
-    struct Position{
-        var longitude: Double
-        var latitude: Double
-    }
+    
     
     var timeStamp: String!
     let locationManager = CLLocationManager()
     
+    var position: Position!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.locationManager.requestAlwaysAuthorization()
-        
-        if CLLocationManager.locationServicesEnabled(){
+        //self.locationManager.requestAlwaysAuthorization()
+        print("viewDidload")
+        configureView()
+        /*if CLLocationManager.locationServicesEnabled(){
             self.locationManager.delegate = self
             self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
             self.locationManager.startUpdatingLocation()
-        }
+        }*/
+        
     }
     
+    func configureView(){
+        print("config")
+        guard let position = self.position else {return}
+        print("position: \(position)")
+        updateUI(from: position)
+        
+    }
     
-    func updateUI(from position: Position, timeStamp: Date ) {
+    func updateUI(from position: Position){
         
         getWeatherGroups(latitude: position.latitude, longitude: position.longitude) { weatherGroups in
             print("latitude: \(position.latitude), longitude: \(position.longitude)")
             self.weatherGroups = weatherGroups
             
-            self.timeStamp = self.hoursAndMinutes(timeValue: String(describing: timeStamp))
+            //self.timeStamp = self.hoursAndMinutes(timeValue: String(describing: timeStamp))
             
-            self.locationManager.fetchCountryAndCity(location: self.locationManager.location!) { country, city in
+            self.locationManager.fetchCountryAndCity(location: CLLocation(latitude: position.latitude, longitude: position.longitude)) { country, city in
+                print("test")
                 let label = UILabel(frame: CGRect(x: 10, y:6, width: self.view.frame.size.width, height: 15))
                 //print("latitude: \(position.latitude), longitude: \(position.longitude)")
-                //print(city)
-                //print(country)
-                label.text = "\(city),\(country),\((self.timeStamp)!)"
+                print(city)
+                print(country)
+                label.text = "\(city)"
                 label.textColor = #colorLiteral(red: 0.4513868093, green: 0.9930960536, blue: 1, alpha: 1)
                 label.font = label.font.withSize(11)
                 self.title = label.text
@@ -118,6 +129,8 @@ extension ViewController {
 }
 
 
+
+
 // MARK: - UITableViewDataSource
 extension ViewController {
     
@@ -129,7 +142,7 @@ extension ViewController {
         cell.tempLabel.text = String(format: "%.1f°", weatherItem.temp - 272.15)
         cell.tempLabel.textColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
         if !weatherItem.hasRain{
-            cell.rainLabel.text = String(format: "%.2f mm", (weatherItem.rainVolume!))
+            cell.rainLabel.text = String(format: "%.2f mm", (weatherItem.rainVolume)!)
         }else {
             cell.rainLabel.text = "0.00mm"
         }
@@ -167,6 +180,7 @@ extension ViewController {
 
 
 // MARK: - CLLocationManagerDelegate
+/*
 extension ViewController : CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -177,4 +191,4 @@ extension ViewController : CLLocationManagerDelegate {
             updateUI(from: position, timeStamp: location.timestamp)
         }
     }
-}
+}*/

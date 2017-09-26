@@ -17,12 +17,14 @@ class NetworkJsonManager {
     private init() {}
     
     @discardableResult
-    func fetchWeatherJSON (latitude: Double, longitude: Double, completionHandler completion: @escaping ([String: Any]?, _ error: NSError?) -> Void) -> URLSessionDataTask {
+    func fetchWeatherJSON (latitude: Double = 0.0, longitude: Double = 0.0, type: String = "", completionHandler completion: @escaping ([String: Any]?, _ error: NSError?) -> Void) -> URLSessionDataTask {
         let apiKey: String = "034b102c87bd7d279a8075e1ac71a52c"
-        
-        let url = URL(string: "https://api.openweathermap.org/data/2.5/forecast?lat=\(latitude)&lon=\(longitude)&APPID=\(apiKey)")
-        
-        
+        var url: URL!
+        if type == ""{
+            url = URL(string: "https://api.openweathermap.org/data/2.5/forecast?lat=\(latitude)&lon=\(longitude)&APPID=\(apiKey)")}
+        else{
+            url = URL(string: "https://api.openweathermap.org/data/2.5/forecast?lat=\(latitude)&lon=\(longitude)&APPID=\(apiKey)")
+        }
         let task = session.dataTask(with: url!){ ( data, response, error) in
             if error != nil{
                 print("Something went wrong")
@@ -36,7 +38,6 @@ class NetworkJsonManager {
                         let weatherJson = try JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers) as? [String: Any]
                         
                         //print(String.init(data: content, encoding: .utf8)!)
-                        
                         DispatchQueue.main.async {
                             completion(weatherJson, nil)
                         }
