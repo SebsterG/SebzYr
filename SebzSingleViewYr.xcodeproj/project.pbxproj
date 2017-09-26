@@ -26,6 +26,7 @@
 		E6B2AE9E1F67F5C7000C594D /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B2AE9C1F67F5C7000C594D /* HeaderView.swift */; };
 		E6B2AE9F1F67F5C7000C594D /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6B2AE9D1F67F5C7000C594D /* HeaderView.xib */; };
 		E6E8A3AE1F7A53EC00C7DDB9 /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E8A3AD1F7A53EC00C7DDB9 /* Position.swift */; };
+		E6E8A3B01F7A6CA300C7DDB9 /* CitiesPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E8A3AF1F7A6CA300C7DDB9 /* CitiesPosition.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,9 @@
 		E6B2AE9C1F67F5C7000C594D /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		E6B2AE9D1F67F5C7000C594D /* HeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
 		E6E8A3AD1F7A53EC00C7DDB9 /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
+		E6E8A3AF1F7A6CA300C7DDB9 /* CitiesPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesPosition.swift; sourceTree = "<group>"; };
+		E6E8A3B11F7A791300C7DDB9 /* positionIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = positionIcon.png; sourceTree = "<group>"; };
+		E6E8A3B21F7A7B1100C7DDB9 /* positionIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = positionIcon.png; path = ../../../Desktop/positionIcon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +103,7 @@
 				E6279D961F710346005FB4EF /* WeatherItem.swift */,
 				E6279D981F710368005FB4EF /* WeatherGroup.swift */,
 				E616CA091F74F99F0011EC59 /* WeatherCities.swift */,
+				E6E8A3AF1F7A6CA300C7DDB9 /* CitiesPosition.swift */,
 				E6FEC5081F73A02E005503A7 /* Network */,
 				E6279D9C1F7110D8005FB4EF /* CLLocationManager+fetchCountryAndCity.swift */,
 				E61F5DEC1F615D930041D441 /* WeatherIcons.swift */,
@@ -107,6 +112,8 @@
 				E61F5D5C1F601ABB0041D441 /* Assets.xcassets */,
 				E61F5D5E1F601ABB0041D441 /* LaunchScreen.storyboard */,
 				E61F5D611F601ABB0041D441 /* Info.plist */,
+				E6E8A3B11F7A791300C7DDB9 /* positionIcon.png */,
+				E6E8A3B21F7A7B1100C7DDB9 /* positionIcon.png */,
 				E61BD49A1F713F08007E6657 /* arrow.png */,
 				E6B2AE981F66A072000C594D /* windArrow.png */,
 			);
@@ -235,6 +242,7 @@
 				E605BBCB1F727D5B00C23EA6 /* CustomCityTableViewCell.swift in Sources */,
 				E6279D9B1F710722005FB4EF /* NetworkJsonManager.swift in Sources */,
 				E616CA0A1F74F99F0011EC59 /* WeatherCities.swift in Sources */,
+				E6E8A3B01F7A6CA300C7DDB9 /* CitiesPosition.swift in Sources */,
 				E61F5D581F601ABB0041D441 /* ViewController.swift in Sources */,
 				E6279D9D1F7110D8005FB4EF /* CLLocationManager+fetchCountryAndCity.swift in Sources */,
 				E61F5DED1F615D940041D441 /* WeatherIcons.swift in Sources */,

@@ -11,6 +11,7 @@ import UIKit
 
 class CustomCityTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var positionIcon: UIImageView!
     
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var tempLabel: UILabel!

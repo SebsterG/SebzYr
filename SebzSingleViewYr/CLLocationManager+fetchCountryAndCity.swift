@@ -13,7 +13,6 @@ extension CLLocationManager {
     
     func fetchCountryAndCity(location: CLLocation, completion: @escaping (String, String) -> ()) {
         CLGeocoder().reverseGeocodeLocation(location) { placemarks, error in
-            print(placemarks)
             
             if let error = error {
                 print(error)
