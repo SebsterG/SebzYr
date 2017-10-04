@@ -23,7 +23,8 @@ class NetworkJsonManager {
         if type == ""{
             url = URL(string: "https://api.openweathermap.org/data/2.5/forecast?lat=\(latitude)&lon=\(longitude)&APPID=\(apiKey)")}
         else{
-            url = URL(string: "https://api.openweathermap.org/data/2.5/forecast?lat=\(latitude)&lon=\(longitude)&APPID=\(apiKey)")
+            url = URL(string: "https://api.openweathermap.org/pollution/v1/co/\(Int(latitude)),\(Int(longitude))/current.json?appid=\(apiKey)")
+            //url = URL(string: "https://api.openweathermap.org/pollution/v1/co/60,10/current.json?appid=034b102c87bd7d279a8075e1ac71a52c")
         }
         let task = session.dataTask(with: url!){ ( data, response, error) in
             if error != nil{

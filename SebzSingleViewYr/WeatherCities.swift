@@ -9,5 +9,6 @@
 import Foundation
 struct WeatherCities{
     var cityName: String
+    var COValue: Double
     var sectionGroup: [WeatherItem]
 }

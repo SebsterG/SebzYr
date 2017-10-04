@@ -24,15 +24,8 @@ class ViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.locationManager.requestAlwaysAuthorization()
-        print("viewDidload")
+        tableView.allowsSelection = false
         configureView()
-        /*if CLLocationManager.locationServicesEnabled(){
-            self.locationManager.delegate = self
-            self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            self.locationManager.startUpdatingLocation()
-        }*/
-        
     }
     
     func configureView(){
@@ -40,7 +33,6 @@ class ViewController: UITableViewController {
         guard let position = self.position else {return}
         print("position: \(position)")
         updateUI(from: position)
-        
     }
     
     func updateUI(from position: Position){
@@ -49,17 +41,16 @@ class ViewController: UITableViewController {
             print("latitude: \(position.latitude), longitude: \(position.longitude)")
             self.weatherGroups = weatherGroups
             
-            //self.timeStamp = self.hoursAndMinutes(timeValue: String(describing: timeStamp))
             
             self.locationManager.fetchCountryAndCity(location: CLLocation(latitude: position.latitude, longitude: position.longitude)) { country, city in
                 print("test")
                 let label = UILabel(frame: CGRect(x: 10, y:6, width: self.view.frame.size.width, height: 15))
-                //print("latitude: \(position.latitude), longitude: \(position.longitude)")
                 print(city)
                 print(country)
                 label.text = "\(city)"
                 label.textColor = #colorLiteral(red: 0.4513868093, green: 0.9930960536, blue: 1, alpha: 1)
                 label.font = label.font.withSize(11)
+                label.backgroundColor = .white
                 self.title = label.text
                 
                 self.tableView.reloadData()
@@ -102,8 +93,6 @@ class ViewController: UITableViewController {
         
         return dateFormatter.string(from: date)
     }
-    
-
 }
 
 
@@ -116,11 +105,11 @@ extension ViewController {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let returnedView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 20))
-        returnedView.backgroundColor = #colorLiteral(red: 0.5741485357, green: 0.5741624236, blue: 0.574154973, alpha: 0.7202750428)
+        returnedView.backgroundColor = .white
         
         let label = UILabel(frame: CGRect(x: 10, y:6, width: view.frame.size.width, height: 15))
         label.text = self.weatherGroups[section].sectionNameDate
-        label.textColor = #colorLiteral(red: 0.4513868093, green: 0.9930960536, blue: 1, alpha: 1)
+        label.textColor = #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1)
         label.font = label.font.withSize(11)
         returnedView.addSubview(label)
         
@@ -137,7 +126,6 @@ extension ViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherCell", for: indexPath) as! CustomTableViewCell
         let weatherItem = self.weatherGroups[indexPath.section].sectionGroup[indexPath.row]
-        
         
         cell.tempLabel.text = String(format: "%.1f°", weatherItem.temp - 272.15)
         cell.tempLabel.textColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
@@ -163,7 +151,7 @@ extension ViewController {
         
         let weatherIcon = WeatherIcon(iconString: weatherItem.icon)
         cell.iconImage.image = weatherIcon.image
-        cell.backgroundColor = #colorLiteral(red: 0.4513868093, green: 0.9930960536, blue: 1, alpha: 1)
+        cell.backgroundColor = UIColor(red: 0.0, green: 185.0, blue: 241.0, alpha: 1.0)
         
         
         return cell
@@ -176,6 +164,19 @@ extension ViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.weatherGroups[section].sectionGroup.count
     }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == 0 && indexPath.section == 0{
+            return 100
+        }else{
+            return 80
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
 }
 
 
